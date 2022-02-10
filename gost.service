@@ -1,0 +1,13 @@
+[Unit]
+Description=Gost - GO Simple Tunnel
+
+[Service]
+User=nobody
+Type=simple
+ExecStart=/usr/local/bin/gost -C /etc/gost/conf.json
+Restart=always
+RestartSec=15s
+TimeoutSec=60s
+
+[Install]
+WantedBy=multi-user.target

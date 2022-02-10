@@ -1,0 +1,9 @@
+{
+    "Debug": false,
+    "Retries": 0,
+    "ServeNodes": [
+        "scheme://:3389/CLOUDFLAREIP:443"
+    ],
+    "ChainNodes": [],
+    "Routes": []
+}
