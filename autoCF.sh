@@ -96,7 +96,15 @@ function uninstall_gost(){
     rm -f /lib/systemd/system/gost.service
 }
 
+function is_root(){
+    if [[ $EUID -ne 0 ]]; then
+        echo "需要使用root用户运行"
+        exit 1
+    fi
+}
+
 function main(){
+    is_root
     local param="$1"
     tmp_script_path='/tmp/cf.sh'
     tmp_better_ip='/tmp/better_ip.txt'
