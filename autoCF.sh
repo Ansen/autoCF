@@ -71,13 +71,13 @@ function install_gost(){
             ;;
     esac
     local os=$(uname -s)
-    curl -o "${tmp_file}" https://github.com/ginuerzh/gost/releases/download/v${version}/gost-${os}-${bit}-${version}.gz
+    wget -O "${tmp_file}" https://github.com/ginuerzh/gost/releases/download/v${version}/gost-${os}-${bit}-${version}.gz
     [[ $? -ne 0 ]] && echo "gost下载失败" && exit 1
     [[ ! -f ${tmp_file} ]] && echo "gost下载失败" && exit 1
     gzip -d ${tmp_file}
     [[ $? -ne 0 ]] && echo "gost解压失败" && exit 1
-    chmod +x gost-${os}-${bit}-${version}
-    mv gost-${os}-${bit}-${version} "${gost_install_path}/gost"
+    chmod +x gost
+    mv gost "${gost_install_path}/"
     [[ $? -ne 0 ]] && echo "gost安装失败" && exit 1
     
     mkdir -p /etc/gost
