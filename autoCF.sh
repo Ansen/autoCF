@@ -124,6 +124,7 @@ function main(){
         modify_better_cloudflare_script
         chmod +x ${tmp_script_path}
         cd /tmp && /bin/bash ${tmp_script_path}
+        handle_gost
     else
         echo "Usage: $0 [install|uninstall|update]"
         exit 1
