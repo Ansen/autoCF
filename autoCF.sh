@@ -55,6 +55,7 @@ function install_gost(){
         local version=$(cat version)
         echo "gost版本获取失败, 使用默认版本: ${version}"
     fi
+    echo "gost版本: v${version}"
     local machine=$(uname -m)
     case ${machine} in
         x86_64)
