@@ -30,12 +30,19 @@ function modify_better_cloudflare_script() {
 }
 
 function handle_gost(){
+    echo "正在处理 gost..."
     [[ ! -f ${tmp_better_ip} ]] && echo "找不到 ${tmp_better_ip}" && exit 1
 
     local anycast=$(cat ${tmp_better_ip})
+    # 备份原有gost配置
+    [[ -f /etc/gost/gost.yaml ]] && \cp -f /etc/gost/conf.json /tmp/gost.conf.json.bak.$(date "+%F-%H%M%S")
     \cp -f /etc/gost/conf.json.example /etc/gost/conf.json
     sed -i "s/CLOUDFLAREIP/${anycast}/g" /etc/gost/conf.json
+    [[ $? -ne 0 ]] && echo "gost配置文件修改失败" && exit 1
+    echo "gost配置文件修改成功"
     systemctl restart gost
+    [[ $? -ne 0 ]] && echo "gost重启失败" && exit 1
+    echo "gost已重启"
 
 }
 
