@@ -40,3 +40,4 @@ cd autoCF
 - [gost](https://github.com/ginuerzh/gost)
 - [better-cloudflare-ip](https://github.com/badafans/better-cloudflare-ip)
 - [gost 一键安装](https://github.com/eicky/gost.sh)
+- [GitHub Proxy](https://ghproxy.com/)
