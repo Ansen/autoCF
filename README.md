@@ -2,7 +2,7 @@
 
 查找 CloudfFlare 优先IP 并更新 gost
 
-中转端口默认为3389，请自行修改。
+中转端口默认为3389，请在 `config.json.example` 中自行修改。
 
 ## 系统要求
 
