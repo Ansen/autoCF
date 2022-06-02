@@ -49,7 +49,7 @@ function handle_gost(){
 function install_gost(){
     local gost_install_path=/usr/local/bin
     local tmp_file="gost.gz"
-    local version=$(wget --no-check-certificate -qO- -t2 -T3 https://gost.eicky.workers.dev | grep "tag_name"| head -n 1| awk -F ":" '{print $2}'| sed 's/\"//g;s/,//g;s/ //g;s/v//g')
+    local version=$(wget -qO- -t1 -T2 "https://api.github.com/repos/ginuerzh/gost/releases/latest" | grep "tag_name" | head -n 1 | awk -F ":" '{print $2}' | sed 's/\"//g;s/,//g;s/ //g'| cut -b 2-)
     if [[ -z ${version} ]]
     then
         local version=$(cat version)
