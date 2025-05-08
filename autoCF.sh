@@ -79,9 +79,9 @@ function install_gost(){
             ;;
     esac
     #local os=$(uname -s)
-    #wget -O "${tmp_file}" https://github.com/ginuerzh/gost/releases/download/v${version}/gost-${os}-${bit}-${version}.gz
+    #wget -q --show-progress -O "${tmp_file}" https://github.com/ginuerzh/gost/releases/download/v${version}/gost-${os}-${bit}-${version}.gz
     local os=$(uname -s | tr '[:upper:]' '[:lower:]')
-    wget -O "${tmp_file}" https://github.com/ginuerzh/gost/releases/download/v${version}/gost_${version}_${os}_${bit}.tar.gz
+    wget -q --show-progress -O "${tmp_file}" https://github.com/ginuerzh/gost/releases/download/v${version}/gost_${version}_${os}_${bit}.tar.gz
     [[ $? -ne 0 ]] && echo "gost下载失败" && exit 1
     [[ ! -f ${tmp_file} ]] && echo "gost下载失败" && exit 1
     gzip -d ${tmp_file}
