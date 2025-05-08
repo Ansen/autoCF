@@ -86,6 +86,7 @@ function install_gost(){
     [[ ! -f ${tmp_file} ]] && echo "gost下载失败" && exit 1
     tar xf ${tmp_file}
     [[ $? -ne 0 ]] && echo "gost解压失败" && exit 1
+    rm -f ${tmp_file} 
     chmod +x gost
     mv gost "${gost_install_path}/"
     [[ $? -ne 0 ]] && echo "gost安装失败" && exit 1
