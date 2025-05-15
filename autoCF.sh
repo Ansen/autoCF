@@ -62,7 +62,7 @@ function install_gost(){
             local bit="amd64"
             ;;
         aarch64)
-            local bit="armv8"
+            local bit="arm64"
             ;;
         armv7l)
             local bit="armv7"
