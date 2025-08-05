@@ -10,9 +10,7 @@
 
 ## 安装
 
-```shell
-git clone https://github.com/Ansen/autoCF.git
-```
+无需安装，可通过 curl/wget 配合管道直接运行
 
 ## 配置
 
@@ -28,22 +26,25 @@ gost路径为: `/usr/local/bin/gost`
 systemd 服务配置路径为: `/lib/systemd/system/gost.service`
 
 ```shell
-cd autoCF
-/bin/bash autoCF.sh install
+wget -q -O - https://raw.githubusercontent.com/Ansen/autoCF/refs/heads/master/autoCF.sh | bash install
+# Or
+curl -s https://raw.githubusercontent.com/Ansen/autoCF/refs/heads/master/autoCF.sh | bash install
 ```
 
 > 卸载 gost
 
 ```shell
-cd autoCF
-/bin/bash autoCF.sh uninstall
+wget -q -O - https://raw.githubusercontent.com/Ansen/autoCF/refs/heads/master/autoCF.sh | bash uninstall
+# Or
+curl -s https://raw.githubusercontent.com/Ansen/autoCF/refs/heads/master/autoCF.sh | bash uninstall
 ```
 
 > 查找优选IP，更新 gost 配置，并重启 gost
 
 ```shell
-cd autoCF
-/bin/bash autoCF.sh update
+wget -q -O - https://raw.githubusercontent.com/Ansen/autoCF/refs/heads/master/autoCF.sh | bash update
+# Or
+curl -s https://raw.githubusercontent.com/Ansen/autoCF/refs/heads/master/autoCF.sh | bash update
 ```
 
 ## 感谢

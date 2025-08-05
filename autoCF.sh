@@ -8,7 +8,8 @@ menu=1
 bandwidth=60
 # 线程数
 tasknum=20
-
+# gost 默认版本
+default_gost_version="3.2.1"
 
 function download_better_cloudflare_script() {
     local download_url='https://ghproxy.com/https://raw.githubusercontent.com/badafans/better-cloudflare-ip/master/shell/cf.sh'
@@ -28,6 +29,41 @@ function modify_better_cloudflare_script() {
     sed -i "/^echo 总计用时/a echo \$anycast > ${tmp_better_ip}" ${tmp_script_path}
 
 }
+
+function generate_gost_conf(){
+    mkdir -p /etc/gost
+    cat > /etc/gost/conf.json.example << EOF
+{
+    "Debug": false,
+    "Retries": 0,
+    "ServeNodes": [
+        "scheme://:3389/CLOUDFLAREIP:443"
+    ],
+    "ChainNodes": [],
+    "Routes": []
+}
+EOF
+}
+
+function generate_gost_service(){
+    cat > /lib/systemd/system/gost.service << EOF
+[Unit]
+Description=Gost - GO Simple Tunnel
+
+[Service]
+User=nobody
+Type=simple
+ExecStart=/usr/local/bin/gost -C /etc/gost/conf.json
+Restart=always
+RestartSec=15s
+TimeoutSec=60s
+
+[Install]
+WantedBy=multi-user.target
+EOF
+}
+
+
 
 function handle_gost(){
     echo "正在处理 gost..."
@@ -52,7 +88,7 @@ function install_gost(){
     local version=$(wget -qO- -t1 -T2 "https://api.github.com/repos/go-gost/gost/releases/latest" | grep "tag_name" | head -n 1 | awk -F ":" '{print $2}' | sed 's/\"//g;s/,//g;s/ //g'| cut -b 2-)
     if [[ -z ${version} ]]
     then
-        local version=$(cat version)
+        local version=${default_gost_version}
         echo "gost版本获取失败, 使用默认版本: ${version}"
     fi
     echo "gost版本: v${version}"
@@ -91,10 +127,9 @@ function install_gost(){
     mv gost "${gost_install_path}/"
     [[ $? -ne 0 ]] && echo "gost安装失败" && exit 1
     
-    mkdir -p /etc/gost
-    \cp -f conf.json.example /etc/gost/conf.json.example
-
-    \cp -f gost.service /lib/systemd/system/gost.service
+    generate_gost_conf
+    generate_gost_service
+    
     systemctl daemon-reload
     systemctl enable gost
 }
