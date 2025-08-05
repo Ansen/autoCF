@@ -49,6 +49,6 @@ cd autoCF
 ## 感谢
 
 - [Cloudflare](https://www.cloudflare.com/)
-- [gost](https://github.com/ginuerzh/gost)
+- [gost](https://github.com/go-gost/gost/)
 - [better-cloudflare-ip](https://github.com/badafans/better-cloudflare-ip)
 - [GitHub Proxy](https://ghproxy.com/)

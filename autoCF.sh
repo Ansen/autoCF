@@ -49,7 +49,7 @@ function handle_gost(){
 function install_gost(){
     local gost_install_path=/usr/local/bin
     local tmp_file="gost.gz"
-    local version=$(wget -qO- -t1 -T2 "https://api.github.com/repos/ginuerzh/gost/releases/latest" | grep "tag_name" | head -n 1 | awk -F ":" '{print $2}' | sed 's/\"//g;s/,//g;s/ //g'| cut -b 2-)
+    local version=$(wget -qO- -t1 -T2 "https://api.github.com/repos/go-gost/gost/releases/latest" | grep "tag_name" | head -n 1 | awk -F ":" '{print $2}' | sed 's/\"//g;s/,//g;s/ //g'| cut -b 2-)
     if [[ -z ${version} ]]
     then
         local version=$(cat version)
@@ -79,9 +79,9 @@ function install_gost(){
             ;;
     esac
     #local os=$(uname -s)
-    #wget -q --show-progress -O "${tmp_file}" https://github.com/ginuerzh/gost/releases/download/v${version}/gost-${os}-${bit}-${version}.gz
+    #wget -q --show-progress -O "${tmp_file}" https://github.com/go-gost/gost/releases/download/v${version}/gost-${os}-${bit}-${version}.gz
     local os=$(uname -s | tr '[:upper:]' '[:lower:]')
-    wget -q --show-progress -O "${tmp_file}" https://github.com/ginuerzh/gost/releases/download/v${version}/gost_${version}_${os}_${bit}.tar.gz
+    wget -q --show-progress -O "${tmp_file}" https://github.com/go-gost/gost/releases/download/v${version}/gost_${version}_${os}_${bit}.tar.gz
     [[ $? -ne 0 ]] && echo "gost下载失败" && exit 1
     [[ ! -f ${tmp_file} ]] && echo "gost下载失败" && exit 1
     tar xf ${tmp_file}
