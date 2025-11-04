@@ -26,25 +26,25 @@ gost路径为: `/usr/local/bin/gost`
 systemd 服务配置路径为: `/lib/systemd/system/gost.service`
 
 ```shell
-wget -q -O - https://raw.githubusercontent.com/Ansen/autoCF/refs/heads/master/autoCF.sh | bash install
+bash <(wget -q -O - https://raw.githubusercontent.com/Ansen/autoCF/refs/heads/master/autoCF.sh) install
 # Or
-curl -s https://raw.githubusercontent.com/Ansen/autoCF/refs/heads/master/autoCF.sh | bash install
+curl -s https://raw.githubusercontent.com/Ansen/autoCF/refs/heads/master/autoCF.sh) install
 ```
 
 > 卸载 gost
 
 ```shell
-wget -q -O - https://raw.githubusercontent.com/Ansen/autoCF/refs/heads/master/autoCF.sh | bash uninstall
+bash <(wget -q -O - https://raw.githubusercontent.com/Ansen/autoCF/refs/heads/master/autoCF.sh) uninstall
 # Or
-curl -s https://raw.githubusercontent.com/Ansen/autoCF/refs/heads/master/autoCF.sh | bash uninstall
+bash <(curl -s https://raw.githubusercontent.com/Ansen/autoCF/refs/heads/master/autoCF.sh) uninstall
 ```
 
 > 查找优选IP，更新 gost 配置，并重启 gost
 
 ```shell
-wget -q -O - https://raw.githubusercontent.com/Ansen/autoCF/refs/heads/master/autoCF.sh | bash update
+bash <(wget -q -O - https://raw.githubusercontent.com/Ansen/autoCF/refs/heads/master/autoCF.sh) update
 # Or
-curl -s https://raw.githubusercontent.com/Ansen/autoCF/refs/heads/master/autoCF.sh | bash update
+bash <(curl -s https://raw.githubusercontent.com/Ansen/autoCF/refs/heads/master/autoCF.sh) update
 ```
 
 ## 感谢
