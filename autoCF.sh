@@ -32,16 +32,18 @@ function modify_better_cloudflare_script() {
 
 function generate_gost_conf(){
     mkdir -p /etc/gost
-    cat > /etc/gost/conf.json.example << EOF
-{
-    "Debug": false,
-    "Retries": 0,
-    "ServeNodes": [
-        "scheme://:3389/CLOUDFLAREIP:443"
-    ],
-    "ChainNodes": [],
-    "Routes": []
-}
+    cat > /etc/gost/conf.yaml.example << EOF
+services:
+  - name: service-0
+    addr: :3389
+    handler:
+      type: tcp
+    listener:
+      type: tcp
+    forwarder:
+      nodes:
+        - name: target-0
+          addr: CLOUDFLAREIP:443
 EOF
 }
 
@@ -51,9 +53,10 @@ function generate_gost_service(){
 Description=Gost - GO Simple Tunnel
 
 [Service]
-User=nobody
+# User=nobody
+DynamicUser=yes
 Type=simple
-ExecStart=/usr/local/bin/gost -C /etc/gost/conf.json
+ExecStart=/usr/local/bin/gost -C /etc/gost/conf.yaml
 Restart=always
 RestartSec=15s
 TimeoutSec=60s
